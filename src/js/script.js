@@ -40,7 +40,7 @@ calculateButton.addEventListener("click", () => {
       result.style.borderStyle = "double";
     } else {
       // bad values
-      if (imc < 18.5 || imc > 25) {
+      if (imc <= 18.5 || imc >= 25) {
         result.style.color = "red";
         result.style.borderColor = "red";
         result.innerText = imc.toFixed(1).toString();
