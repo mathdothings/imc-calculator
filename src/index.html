@@ -5,7 +5,7 @@
     <title>IMC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <script defer src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
   </head>
   <body>
     <main>
@@ -14,22 +14,28 @@
       <label for="input-weight">Peso (kg):</label>
       <input
         placeholder="Digite seu peso"
-        type="text"
+        type="number"
         id="input-weight"
         name="input-weight"
+        onchange="handleChange()"
+        min=5
+        value=5
         required
       />
 
       <label for="input-height">Altura (m):</label>
       <input
         placeholder="Digite sua altura"
-        type="text"
+        type="number"
         id="input-height"
         name="input-height"
+        onchange="handleChange()"
+        min=1
+        value=1
         required
       />
 
-      <button id="calculate-button">Calcular IMC</button>
+      <button onclick="sendResultImc()" id="calculate-button">Calcular IMC</button>
       <p><strong>Resultado</strong></p>
       <p id="result"></p>
     </main>
