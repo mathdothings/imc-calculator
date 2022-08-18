@@ -9,3 +9,5 @@ Conhecimentos:
 1. HTML básico; 
 2. CSS selectors, tipografia, e criação de layout simples com flex;
 3. JS básico e manipulação de DOM.
+
+Link: https://mathdothings.github.io/imc-calculator/src/index.html
