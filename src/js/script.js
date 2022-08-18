@@ -1,56 +1,32 @@
-const calculateButton = document.querySelector("#calculate-button");
+const inputWeight = document.getElementById("input-weight");
+const inputHeight = document.getElementById("input-height");
+const calculateButton = document.getElementById("calculate-button");
+const result = document.getElementById("result");
 
-const inputWeight = document.querySelector("#input-weight");
+// função que envia o resultado do cálculo do imc
+function sendResultImc() {
+  const imc = calculateImc()
 
-const inputHeight = document.querySelector("#input-height");
+  result.style.borderColor = "limegreen";
+  result.style.color = "limegreen";
+  result.innerText = imc.toFixed(1);
+}
 
-const result = document.querySelector("#result");
-
-calculateButton.addEventListener("click", () => {
-  const minWeight = 5;
-  const minHeight = 1;
-  const weight = inputWeight.value;
-  const height = inputHeight.value;
+// função que calcula o IMC
+function calculateImc() {
+  const weight = Number(inputWeight.value);
+  const height = Number(inputHeight.value);
   const imc = weight / height ** 2;
-  // just for debbuging proporses
-  // console.log(`WEIGHT ==> Type: ${typeof weight} Value: ${weight}`);
-  // console.log(`HEIGHT ==> Type: ${typeof height} Value: ${height}`);
-  // console.log("imc ==> ", imc);
+  return imc
+}
 
-  if (isNaN(imc)) {
-    if (weight === "" || height === "") {
-      // blank values
-      result.innerText = "Preencha os campos!";
-      result.style.color = "orange";
-      result.style.borderColor = "orange";
-      result.style.borderStyle = "solid";
-    } else {
-      // invalid values
-      result.innerText = "Valor(es) inválido(s)";
-      result.style.color = "red";
-      result.style.borderColor = "red";
-      result.style.borderStyle = "solid";
-    }
-  } else {
-    // invalid values
-    if (weight < minWeight || height < minHeight) {
-      result.innerText = "Valor(es) inválido(s)";
-      result.style.color = "red";
-      result.style.borderColor = "red";
-      result.style.borderStyle = "double";
-    } else {
-      // bad values
-      if (imc <= 18.5 || imc >= 25) {
-        result.style.color = "red";
-        result.style.borderColor = "red";
-        result.innerText = imc.toFixed(1).toString();
-      }
-      // good values
-      if (imc > 18.5 && imc < 25) {
-        result.style.borderColor = "limegreen";
-        result.style.color = "limegreen";
-        result.innerText = imc.toFixed(1).toString();
-      }
-    }
-  }
-});
+// função que valida o valor dos inputs de altura e peso para desabilitar o botão
+function handleChange() {
+  const height = Number(inputHeight.value);
+  const weight = Number(inputWeight.value);
+  const MIN_WEIGHT = 5;
+  const MIN_HEIGHT = 1;
+  height < MIN_HEIGHT || weight < MIN_WEIGHT ? calculateButton.disabled = true : calculateButton.disabled = false
+}
+
+
